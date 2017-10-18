@@ -1,51 +1,25 @@
-/*
- * Copyright (c) 2013-2014 Minkyu Lee. All rights reserved.
- *
- * NOTICE:  All information contained herein is, and remains the
- * property of Minkyu Lee. The intellectual and technical concepts
- * contained herein are proprietary to Minkyu Lee and may be covered
- * by Republic of Korea and Foreign Patents, patents in process,
- * and are protected by trade secret or copyright law.
- * Dissemination of this information or reproduction of this material
- * is strictly forbidden unless prior written permission is obtained
- * from Minkyu Lee (niklaus.lee@gmail.com).
- *
+/**
+ * File name: LicenseManagerDomain.js
+ * Mac OS: /Applications/StarUML.app/Contents/www/license/node/
+ * Linux: /opt/staruml/www/license/node/
+ * CHi dinh dung cho linux
  */
-
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50, node: true */
-/*global */
 
 (function () {
     "use strict";
-
+ 
     var NodeRSA = require('node-rsa');
-    
+ 
     function validate(PK, name, product, licenseKey) {
-        var pk, decrypted;
-        try {
-            pk = new NodeRSA(PK);
-            decrypted = pk.decrypt(licenseKey, 'utf8');
-        } catch (err) {
-            return false;
-        }
-        var terms = decrypted.trim().split("\n");
-        if (terms[0] === name && terms[1] === product) {
-            return { 
-                name: name, 
-                product: product, 
-                licenseType: terms[2],
-                quantity: terms[3],
-                licenseKey: licenseKey
-            };
-        } else {
-            return false;
-        }
+        return{
+           name: "sontd",
+           product: "StarUML",
+           licenseType: "vip",
+           quantity: "unlimited",
+           licenseKey: "no, thanks!"
+        };
     }
-
-    /**
-     * Initializes the domain with several commands.
-     * @param {DomainManager} domainManager The DomainManager for the server
-     */
+ 
     function init(domainManager) {
         if (!domainManager.hasDomain("LicenseManager")) {
             domainManager.registerDomain("LicenseManager", {major: 0, minor: 1});
@@ -87,7 +61,7 @@
             ]
         );
     }
-
+ 
     exports.init = init;
-
+ 
 }());
